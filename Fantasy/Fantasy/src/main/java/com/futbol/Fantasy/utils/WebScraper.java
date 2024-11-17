@@ -93,7 +93,6 @@ public class WebScraper {
                         }
                     }
 
-                    // Vuelve a la página de clubes para procesar el siguiente equipo
                     driver.get("https://www.laliga.com/laliga-easports/clubes");
                     Thread.sleep(2000);
                 } catch (Exception e) {

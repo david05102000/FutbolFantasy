@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -33,14 +32,36 @@ public class FantasyApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		FantasyApplication.primaryStage = primaryStage;
-		showAdminMenuScene();
+		showLoginScene();
 	}
+
+	public static void showLoginScene() throws IOException {
+		primaryStage.setTitle("Fantasy");
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/login.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+		scene = new Scene(root);
+		primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+
+	}
+
 	public static void showAdminMenuScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/views/adminMenu.fxml"));
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/adminMenu.fxml"));
 		loader.setControllerFactory(context::getBean);
 		Parent root = loader.load();
 		scene = new Scene(root);
 
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	public static void showRegisterScene() throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/register.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+		scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
