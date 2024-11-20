@@ -50,7 +50,7 @@ public class RegisterController {
             if ("admin".equals(player.getUserName())) {
                 FantasyApplication.showAdminMenuScene();
             } else {
-                showError("No admin");
+                FantasyApplication.showPlayerMenuScene(player);
             }
         } catch (Exception e) {
             showError("Error al registrar el usuario: " + e.getMessage());

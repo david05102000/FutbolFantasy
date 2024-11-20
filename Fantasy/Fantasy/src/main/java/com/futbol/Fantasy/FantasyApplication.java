@@ -1,5 +1,8 @@
 package com.futbol.Fantasy;
 
+import com.futbol.Fantasy.controller.CreateLeagueController;
+import com.futbol.Fantasy.controller.PlayerMenuController;
+import com.futbol.Fantasy.model.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,6 +58,38 @@ public class FantasyApplication extends Application {
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+
+	public static void showPlayerMenuScene(Player player) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/playerMenu.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+		scene = new Scene(root);
+
+		PlayerMenuController leagueMenuController = loader.getController();
+		leagueMenuController.initData(player);
+
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	public static void showCreateLeagueScene(Player player) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/createLeague.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+
+		Scene newScene = new Scene(root);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		CreateLeagueController createLeagueController = loader.getController();
+		createLeagueController.initData(player);
+
+		newStage.show();
 	}
 
 	public static void showRegisterScene() throws IOException {

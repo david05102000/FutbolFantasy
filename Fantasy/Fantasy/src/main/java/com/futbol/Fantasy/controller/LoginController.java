@@ -37,7 +37,7 @@ public class LoginController {
                 if ("admin".equals(player.getUserName())) {
                     FantasyApplication.showAdminMenuScene();
                 } else {
-                    showError("Usuario correctos.");
+                    FantasyApplication.showPlayerMenuScene(player);;
                 }
             } else {
                 if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
