@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +44,12 @@ public class PlayerMenuController {
             leagues.add("Todavía no estás en ninguna liga.");
         }
         playerLeaguesListView.setItems(leagues);
+    }
+
+    @FXML
+    public void handleMouseClick(MouseEvent arg0) throws IOException {
+        FantasyApplication.showMenuScene(Long.valueOf(playerLeaguesListView.getSelectionModel().getSelectedItem().split("#")[1]), playerLogged);
+        System.out.println("clicked on " + playerLeaguesListView.getSelectionModel().getSelectedItem());
     }
 
 

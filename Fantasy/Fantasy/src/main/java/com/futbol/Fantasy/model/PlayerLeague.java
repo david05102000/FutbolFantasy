@@ -19,6 +19,9 @@ public class PlayerLeague {
     @ManyToOne(fetch = FetchType.EAGER)
     private League league;
 
+    @OneToMany(mappedBy = "playerLeague", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<PlayerLeagueFootballer> playerLeagueFootballers = new ArrayList<>();
+
     @Column(name = "points")
     private int points;
 
@@ -82,6 +85,13 @@ public class PlayerLeague {
         this.status = status;
     }
 
+    public List<PlayerLeagueFootballer> getPlayerLeagueFootballers() {
+        return playerLeagueFootballers;
+    }
+
+    public void setPlayerLeagueFootballers(List<PlayerLeagueFootballer> playerLeagueFootballers) {
+        this.playerLeagueFootballers = playerLeagueFootballers;
+    }
 
     public int getMoney() {
         return money;
@@ -91,4 +101,5 @@ public class PlayerLeague {
         this.money = money;
     }
 }
+
 

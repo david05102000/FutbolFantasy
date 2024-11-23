@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class CreateLeagueController {
@@ -43,12 +41,24 @@ public class CreateLeagueController {
             League league = new League();
             league.setName(leagueNameField.getText());
 
+            List<Footballer> allFootballers = footballerService.findAll();
+            List<Footballer> footballersMarket = selectRandomFootballers(allFootballers, 15);
 
+            league.setFootballersMarket(footballersMarket);
             Player player = playerService.findById(playerLogged.getId());
-
             PlayerLeague playerLeague = leagueService.saveLeagueWithPlayer(league, player, "playing");
 
 
+            // Clasificación de futbolistas por posición
+            Map<String, List<Footballer>> classifiedFootballers = classifyFootballersByPosition(allFootballers);
+            List<PlayerLeagueFootballer> playerLeagueFootballers = new ArrayList<>();
+
+            playerLeagueFootballers.addAll(assignFootballers(classifiedFootballers.get("PORTERO"), playerLeague, 2, 1));
+            playerLeagueFootballers.addAll(assignFootballers(classifiedFootballers.get("DEFENSA"), playerLeague, 7, 4));
+            playerLeagueFootballers.addAll(assignFootballers(classifiedFootballers.get("CENTROCAMPISTA"), playerLeague, 7, 4));
+            playerLeagueFootballers.addAll(assignFootballers(classifiedFootballers.get("DELANTERO"), playerLeague, 4, 2));
+
+            playerLeague.setPlayerLeagueFootballers(playerLeagueFootballers);
             playerLeagueService.save(playerLeague);
 
             FantasyApplication.showPlayerMenuScene(playerLogged);
@@ -60,5 +70,46 @@ public class CreateLeagueController {
     public void initData(Player loggedUser) {
         playerLogged = loggedUser;
         System.out.println(loggedUser.getUserName());
+    }
+    private List<Footballer> selectRandomFootballers(List<Footballer> footballerList, int count) {
+        List<Footballer> selected = new ArrayList<>();
+        Random random = new Random();
+        while (selected.size() < count && !footballerList.isEmpty()) {
+            Footballer footballer = footballerList.get(random.nextInt(footballerList.size()));
+            if (!selected.contains(footballer)) {
+                selected.add(footballer);
+            }
+        }
+        return selected;
+    }
+
+    private Map<String, List<Footballer>> classifyFootballersByPosition(List<Footballer> footballers) {
+        Map<String, List<Footballer>> classified = new HashMap<>();
+        classified.put("PORTERO", new ArrayList<>());
+        classified.put("DEFENSA", new ArrayList<>());
+        classified.put("CENTROCAMPISTA", new ArrayList<>());
+        classified.put("DELANTERO", new ArrayList<>());
+
+        for (Footballer footballer : footballers) {
+            classified.getOrDefault(footballer.getRol(), new ArrayList<>()).add(footballer);
+        }
+        return classified;
+    }
+
+    private List<PlayerLeagueFootballer> assignFootballers(List<Footballer> footballerList, PlayerLeague playerLeague, int count, int starters) {
+        List<PlayerLeagueFootballer> playerLeagueFootballers = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < count; i++) {
+            if (footballerList.isEmpty()) break;
+            Footballer footballer = footballerList.get(random.nextInt(footballerList.size()));
+            PlayerLeagueFootballer playerLeagueFootballer = new PlayerLeagueFootballer();
+            playerLeagueFootballer.setFootballer(footballer);
+            playerLeagueFootballer.setPlayerLeague(playerLeague);
+            playerLeagueFootballer.setSelected(i < starters);
+            playerLeagueFootballers.add(playerLeagueFootballer);
+            footballerList.remove(footballer);
+        }
+        return playerLeagueFootballers;
     }
 }

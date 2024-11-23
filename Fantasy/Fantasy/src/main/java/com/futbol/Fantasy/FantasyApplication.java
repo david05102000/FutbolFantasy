@@ -1,6 +1,7 @@
 package com.futbol.Fantasy;
 
 import com.futbol.Fantasy.controller.CreateLeagueController;
+import com.futbol.Fantasy.controller.MenuController;
 import com.futbol.Fantasy.controller.PlayerMenuController;
 import com.futbol.Fantasy.model.Player;
 import javafx.application.Application;
@@ -66,8 +67,8 @@ public class FantasyApplication extends Application {
 		Parent root = loader.load();
 		scene = new Scene(root);
 
-		PlayerMenuController leagueMenuController = loader.getController();
-		leagueMenuController.initData(player);
+		PlayerMenuController playerMenuController = loader.getController();
+		playerMenuController.initData(player);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -90,6 +91,19 @@ public class FantasyApplication extends Application {
 		createLeagueController.initData(player);
 
 		newStage.show();
+	}
+
+	public static void showMenuScene(Long leagueId, Player playerLogged) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/menu.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+		scene = new Scene(root);
+
+		MenuController menuController = loader.getController();
+		menuController.initData(leagueId, playerLogged, menuController.playerTableView, menuController.nameColumn, menuController.pointsColumn, menuController.teamShieldColumn, menuController.actionColumn, menuController.myTeamTableView, menuController.teamShieldColumnTeam, menuController.teamName, menuController.footballerNameTeam, menuController.positionTeam, menuController.moneyAvailable);
+
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 	public static void showRegisterScene() throws IOException {
