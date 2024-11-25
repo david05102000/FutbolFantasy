@@ -29,10 +29,17 @@ public class FootballerTableView {
         this.team = team;
     }
 
+    public FootballerTableView(ImageView photo, String name, String rol) {
+        this.photo = photo;
+        this.name = name;
+        this.rol = rol;
+    }
+
     public FootballerTableView(int points, String name) {
         this.points = points;
         this.name = name;
     }
+
 
     public FootballerTableView(Long id, String name, String team) {
         this.name = name;

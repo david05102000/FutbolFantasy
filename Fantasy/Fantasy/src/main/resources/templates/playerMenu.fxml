@@ -16,6 +16,11 @@
                <Insets />
             </opaqueInsets>
          </Button>
+         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#handleInvitations" text="Invitaciones">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Button>
          <Button mnemonicParsing="false" onMouseClicked="#handleLogOut" text="Cerrar sesión" />
       </children>
    </HBox>

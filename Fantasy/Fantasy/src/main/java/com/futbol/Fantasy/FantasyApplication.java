@@ -1,9 +1,9 @@
 package com.futbol.Fantasy;
 
-import com.futbol.Fantasy.controller.CreateLeagueController;
-import com.futbol.Fantasy.controller.MenuController;
-import com.futbol.Fantasy.controller.PlayerMenuController;
+import com.futbol.Fantasy.controller.*;
+import com.futbol.Fantasy.model.Footballer;
 import com.futbol.Fantasy.model.Player;
+import com.futbol.Fantasy.model.PlayerLeague;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -100,7 +100,7 @@ public class FantasyApplication extends Application {
 		scene = new Scene(root);
 
 		MenuController menuController = loader.getController();
-		menuController.initData(leagueId, playerLogged, menuController.playerTableView, menuController.nameColumn, menuController.pointsColumn, menuController.teamShieldColumn, menuController.actionColumn, menuController.myTeamTableView, menuController.teamShieldColumnTeam, menuController.teamName, menuController.footballerNameTeam, menuController.positionTeam, menuController.moneyAvailable);
+		menuController.initData(leagueId, playerLogged, menuController.playerTableView, menuController.marketTableView, menuController.marketFootballerNameColumn,menuController.nameColumn, menuController.pointsColumn, menuController.marketShieldColumn, menuController.marketActionColumn, menuController.myTeamTableView, menuController.ShieldColumnTeam, menuController.marketPositionColumn, menuController.teamName, menuController.footballerNameTeam, menuController.positionTeam, menuController.moneyAvailable);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -113,5 +113,43 @@ public class FantasyApplication extends Application {
 		scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+
+
+	public static void showInvitePlayerScene(Long leagueId) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/invitePlayer.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+		Scene newScene = new Scene(root);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		InvitePlayerController invitePlayerController = loader.getController();
+		invitePlayerController.initData(leagueId);
+
+		newStage.show();
+	}
+
+	public static void showInvitationMenu(Long id) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/invitationMenu.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+
+		Scene newScene = new Scene(root);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		InvitationMenuController invitationMenuController = loader.getController();
+		invitationMenuController.initData(id, invitationMenuController.tableView, invitationMenuController.leagueName, invitationMenuController.buttons);
+
+		newStage.show();
 	}
 }

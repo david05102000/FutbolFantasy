@@ -3,6 +3,7 @@ package com.futbol.Fantasy.controller;
 
 import com.futbol.Fantasy.FantasyApplication;
 import com.futbol.Fantasy.model.*;
+import com.futbol.Fantasy.service.LeagueService;
 import com.futbol.Fantasy.service.PlayerLeagueService;
 import com.futbol.Fantasy.table.model.FootballerTableView;
 import javafx.collections.FXCollections;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 
@@ -35,7 +38,7 @@ public class MenuController {
     public TableView<FootballerTableView> myTeamTableView;
 
     @FXML
-    public TableColumn<FootballerTableView, ImageView> teamShieldColumnTeam;
+    public TableColumn<FootballerTableView, ImageView> ShieldColumnTeam;
 
     @FXML
     public TableColumn<FootballerTableView, String> teamName;
@@ -50,13 +53,16 @@ public class MenuController {
     public TableView<FootballerTableView> marketTableView;
 
     @FXML
-    public TableColumn<FootballerTableView, ImageView> teamShieldColumn;
+    public TableColumn<FootballerTableView, ImageView> marketShieldColumn;
 
     @FXML
-    public TableColumn<FootballerTableView, String> footballerNameColumn;
+    public TableColumn<FootballerTableView, String> marketFootballerNameColumn;
 
     @FXML
-    public TableColumn<FootballerTableView, FootballerTableView> actionColumn;
+    public TableColumn<FootballerTableView, String> marketPositionColumn;
+
+    @FXML
+    public TableColumn<FootballerTableView, FootballerTableView> marketActionColumn;
 
     @FXML
     public Label moneyAvailable;
@@ -68,7 +74,10 @@ public class MenuController {
     List<PlayerLeague> playerLeagueList;
 
     PlayerLeague playerLeagueLogged;
+    @Autowired
+    LeagueService leagueService;
 
+    League league;
     private Long leagueId;
     private Player playerLogged;
 
@@ -76,23 +85,26 @@ public class MenuController {
     private void initialize() {
     }
     @Transactional
-    public void initData(Long leagueId, Player playerLogged, TableView<FootballerTableView> playerTableView, TableColumn<FootballerTableView, String> nameColumn, TableColumn<FootballerTableView, String> pointsColumn, TableColumn<FootballerTableView, ImageView> teamShieldColumn, TableColumn<FootballerTableView, FootballerTableView> actionColumn, TableView<FootballerTableView> myTeamTableView, TableColumn<FootballerTableView, ImageView> teamShieldColumnTeam, TableColumn<FootballerTableView, String> teamName, TableColumn<FootballerTableView, String> footballerNameTeam, TableColumn<FootballerTableView, String> positionTeam, Label money) {
+    public void initData(Long leagueId, Player playerLogged, TableView<FootballerTableView> playerTableView,TableView<FootballerTableView> marketTableView, TableColumn<FootballerTableView, String> marketFootballerNameColumn, TableColumn<FootballerTableView, String> nameColumn, TableColumn<FootballerTableView, String> pointsColumn, TableColumn<FootballerTableView, ImageView> marketShieldColumn, TableColumn<FootballerTableView, FootballerTableView> marketActionColumn, TableView<FootballerTableView> myTeamTableView, TableColumn<FootballerTableView, ImageView> ShieldColumnTeam, TableColumn<FootballerTableView, String> marketPositionColumn,TableColumn<FootballerTableView, String> teamName, TableColumn<FootballerTableView, String> footballerNameTeam, TableColumn<FootballerTableView, String> positionTeam, Label money) {
         this.leagueId = leagueId;
         this.playerLogged = playerLogged;
+        this.marketTableView = marketTableView;
+        this.marketFootballerNameColumn = marketFootballerNameColumn;
         this.playerTableView = playerTableView;
         this.nameColumn = nameColumn;
         this.pointsColumn = pointsColumn;
-        this.teamShieldColumn = teamShieldColumn;
-        this.actionColumn = actionColumn;
+        this.marketShieldColumn = marketShieldColumn;
+        this.marketActionColumn = marketActionColumn;
         this.myTeamTableView = myTeamTableView;
-        this.teamShieldColumnTeam = teamShieldColumnTeam;
+        this.ShieldColumnTeam = ShieldColumnTeam;
+        this.marketPositionColumn = marketPositionColumn;
         this.teamName = teamName;
         this.footballerNameTeam = footballerNameTeam;
         this.positionTeam = positionTeam;
         this.moneyAvailable = money;
         loadPlayers();
         loadMyTeam();
-
+        loadMarket();
     }
 
     private void loadMyTeam() {
@@ -110,7 +122,7 @@ public class MenuController {
             imageView.setFitWidth(50);
             footballerTableViewList.add(new FootballerTableView(imageView, f.getFootballer().getName(), f.getFootballer().getRol(), f.getFootballer().getTeam().getName()));
         });
-        teamShieldColumnTeam.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        ShieldColumnTeam.setCellValueFactory(new PropertyValueFactory<>("photo"));
         footballerNameTeam.setCellValueFactory(new PropertyValueFactory<>("name"));
         teamName.setCellValueFactory(new PropertyValueFactory<>("team"));
         positionTeam.setCellValueFactory(new PropertyValueFactory<>("rol"));
@@ -153,6 +165,51 @@ public class MenuController {
         playerTableView.sort();
     }
 
+    private void loadMarket() {
+        league = leagueService.findLeagueById(leagueId);
+
+        ObservableList<FootballerTableView> footballerTableViewList = FXCollections.observableArrayList();
+
+        league.getFootballersMarket().forEach(f -> {
+            ImageView imageView = new ImageView(f.getTeam().getPhoto());
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(50);
+            imageView.setFitWidth(50);
+            footballerTableViewList.add(new FootballerTableView(imageView, f.getName(), f.getRol()));
+        });
+        marketShieldColumn.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        marketFootballerNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        marketPositionColumn.setCellValueFactory(new  PropertyValueFactory<>("rol"));
+        marketActionColumn.setCellFactory(param -> new TableCell<FootballerTableView, FootballerTableView>() {
+            private final Button button = new Button("Pujar");
+
+            {
+                button.setOnAction(event -> {
+                    showSuccess("Prueba");
+                });
+            }
+            @Override
+            protected void updateItem(FootballerTableView item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(button);
+                }
+            }
+
+        });
+        marketFootballerNameColumn.getStyleClass().add("center-aligned-column");
+        marketTableView.setItems(footballerTableViewList);
+
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        symbols.setGroupingSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#,###", symbols);
+        String moneyFormatted = decimalFormat.format(playerLeagueLogged.getMoney());
+
+        moneyAvailable.setText(moneyAvailable.getText() + moneyFormatted);
+    }
 
     @FXML
     public void handleLeagues() throws IOException {
@@ -163,5 +220,16 @@ public class MenuController {
         FantasyApplication.showLoginScene();
     }
 
+    @FXML
+    public void handleInvite() throws IOException {
+        FantasyApplication.showInvitePlayerScene(leagueId);
+    }
+    private void showSuccess(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Éxito");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 }

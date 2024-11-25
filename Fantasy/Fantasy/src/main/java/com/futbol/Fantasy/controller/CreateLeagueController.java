@@ -42,14 +42,15 @@ public class CreateLeagueController {
             league.setName(leagueNameField.getText());
 
             List<Footballer> allFootballers = footballerService.findAll();
-            List<Footballer> footballersMarket = selectRandomFootballers(allFootballers, 15);
+            List<Footballer> footballersMarket = selectMarketFootballers(allFootballers, 15);
 
             league.setFootballersMarket(footballersMarket);
+            allFootballers.removeAll(footballersMarket);
+
             Player player = playerService.findById(playerLogged.getId());
             PlayerLeague playerLeague = leagueService.saveLeagueWithPlayer(league, player, "playing");
 
 
-            // Clasificación de futbolistas por posición
             Map<String, List<Footballer>> classifiedFootballers = classifyFootballersByPosition(allFootballers);
             List<PlayerLeagueFootballer> playerLeagueFootballers = new ArrayList<>();
 
@@ -112,4 +113,17 @@ public class CreateLeagueController {
         }
         return playerLeagueFootballers;
     }
+
+    private List<Footballer> selectMarketFootballers(List<Footballer> footballerList, int count) {
+        Map<String, List<Footballer>> classified = classifyFootballersByPosition(footballerList);
+
+        List<Footballer> selected = new ArrayList<>();
+        selected.addAll(selectRandomFootballers(classified.get("PORTERO"), 2));
+        selected.addAll(selectRandomFootballers(classified.get("DEFENSA"), 5));
+        selected.addAll(selectRandomFootballers(classified.get("CENTROCAMPISTA"), 5));
+        selected.addAll(selectRandomFootballers(classified.get("DELANTERO"), 3));
+
+        return selected;
+    }
+
 }

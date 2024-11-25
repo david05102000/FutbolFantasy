@@ -23,6 +23,12 @@ public class Footballer {
     @JoinColumn(name = "team_id")
     private Team team;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<MarketOffer> marketOfferList = new ArrayList<MarketOffer>();
+
+    @OneToMany(mappedBy = "footballer", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<PlayerLeagueFootballer> playerLeagueFootballers = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -54,6 +60,15 @@ public class Footballer {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    public List<MarketOffer> getMarketOfferList() {
+        return marketOfferList;
+    }
+
+    public void setMarketOfferList(List<MarketOffer> marketOfferList) {
+        this.marketOfferList = marketOfferList;
+    }
+
 
     @Override
     public String toString() {

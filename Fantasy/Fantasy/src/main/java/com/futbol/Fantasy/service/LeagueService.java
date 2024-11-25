@@ -48,8 +48,18 @@ public class LeagueService {
 
         PlayerLeague playerLeague = new PlayerLeague(player, savedLeague);
         playerLeague.setStatus(status);
+        playerLeague.setMoney(100000000);
         return playerLeagueRepository.save(playerLeague);
 
+    }
+
+    public boolean isPlayerInLeague(Long leagueId, Long playerId) {
+        Optional<League> league = repository.findById(leagueId);
+        if (league.isPresent()) {
+            return league.get().getPlayers().stream()
+                    .anyMatch(playerLeague -> playerLeague.getPlayer().getId().equals(playerId));
+        }
+        return false;
     }
 
 

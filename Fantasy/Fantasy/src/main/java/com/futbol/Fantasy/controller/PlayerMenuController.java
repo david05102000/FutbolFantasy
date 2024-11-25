@@ -63,6 +63,11 @@ public class PlayerMenuController {
         FantasyApplication.showCreateLeagueScene(playerLogged);
     }
 
+    @FXML
+    public void handleInvitations() throws IOException {
+        FantasyApplication.showInvitationMenu(playerLogged.getId());
+    }
+
     public void initData(Player loggedUser) {
         playerLogged = loggedUser;
         loadLeagues();
