@@ -152,4 +152,40 @@ public class FantasyApplication extends Application {
 
 		newStage.show();
 	}
+
+	public static void showMarketBuyScene(Footballer footballer, PlayerLeague playerLeague, Long leagueId, Long playerId, MenuController menuController) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/marketBuy.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+		Scene newScene = new Scene(root);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		MarketBuyController marketBuyController = loader.getController();
+		marketBuyController.initData(footballer, playerLeague, leagueId, playerId, menuController);
+
+		newStage.show();
+	}
+
+	public static void showMarketBuyUpdateScene(Footballer footballer, PlayerLeague playerLeague, Long leagueId, Long playerId, MenuController menuController) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/marketUpdateBuy.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+		Scene newScene = new Scene(root);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		MarketBuyUpdateController marketBuyUpdateController = loader.getController();
+		marketBuyUpdateController.initData(footballer, playerLeague, leagueId, playerId, menuController);
+
+		newStage.show();
+	}
 }

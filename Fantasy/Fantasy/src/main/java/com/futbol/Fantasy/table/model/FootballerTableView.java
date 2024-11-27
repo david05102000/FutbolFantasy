@@ -1,5 +1,6 @@
 package com.futbol.Fantasy.table.model;
 
+import com.futbol.Fantasy.model.Footballer;
 import javafx.scene.image.ImageView;
 
 public class FootballerTableView {
@@ -16,6 +17,7 @@ public class FootballerTableView {
 
     private int points;
     private String style;
+    private Footballer footballer;
 
     public FootballerTableView(ImageView photo, String name) {
         this.photo = photo;
@@ -45,6 +47,13 @@ public class FootballerTableView {
         this.name = name;
         this.id = id;
         this.team = team;
+    }
+
+    public FootballerTableView(ImageView photo, String name, String rol, Footballer footballer) {
+        this.photo = photo;
+        this.name = name;
+        this.rol = rol;
+        this.footballer = footballer;
     }
 
     public ImageView getPhoto() {
@@ -103,4 +112,11 @@ public class FootballerTableView {
         return style;
     }
 
+    public Footballer getFootballer() {
+        return footballer;
+    }
+
+    public void setFootballer(Footballer footballer) {
+        this.footballer = footballer;
+    }
 }

@@ -91,8 +91,8 @@
                            <columns>
                               <TableColumn fx:id="marketShieldColumn" prefWidth="63.0" resizable="false" sortable="false" text="C1" />
                               <TableColumn fx:id="marketFootballerNameColumn" prefWidth="127.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C2" />
-                              <TableColumn fx:id="marketPositionColumn" prefWidth="104.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C3" />
-                              <TableColumn fx:id="marketActionColumn" prefWidth="76.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C4" />
+                              <TableColumn fx:id="marketPositionColumn" prefWidth="97.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C3" />
+                              <TableColumn fx:id="marketActionColumn" prefWidth="83.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-LEFT;" text="C4" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

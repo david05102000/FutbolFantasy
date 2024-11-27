@@ -3,7 +3,9 @@ package com.futbol.Fantasy.controller;
 
 import com.futbol.Fantasy.FantasyApplication;
 import com.futbol.Fantasy.model.*;
+import com.futbol.Fantasy.service.FootballerService;
 import com.futbol.Fantasy.service.LeagueService;
+import com.futbol.Fantasy.service.MarketOfferService;
 import com.futbol.Fantasy.service.PlayerLeagueService;
 import com.futbol.Fantasy.table.model.FootballerTableView;
 import javafx.collections.FXCollections;
@@ -66,6 +68,9 @@ public class MenuController {
 
     @FXML
     public Label moneyAvailable;
+
+    @Autowired
+    MarketOfferService marketOfferService;
 
 
     @Autowired
@@ -175,17 +180,34 @@ public class MenuController {
             imageView.setPreserveRatio(true);
             imageView.setFitHeight(50);
             imageView.setFitWidth(50);
-            footballerTableViewList.add(new FootballerTableView(imageView, f.getName(), f.getRol()));
+            footballerTableViewList.add(new FootballerTableView(imageView, f.getName(), f.getRol(), f));
         });
         marketShieldColumn.setCellValueFactory(new PropertyValueFactory<>("photo"));
         marketFootballerNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         marketPositionColumn.setCellValueFactory(new  PropertyValueFactory<>("rol"));
         marketActionColumn.setCellFactory(param -> new TableCell<FootballerTableView, FootballerTableView>() {
             private final Button button = new Button("Pujar");
-
             {
                 button.setOnAction(event -> {
-                    showSuccess("Prueba");
+
+                    FootballerTableView currentItem = getTableView().getItems().get(getIndex());
+                    if (currentItem != null) {
+                        Footballer footballer = currentItem.getFootballer();
+                        boolean hasOffer = marketOfferService.playerHasActiveOffer(footballer, playerLogged.getId(), leagueId);
+
+                        if (!hasOffer){
+                            try {
+                                FantasyApplication.showMarketBuyScene(league.getFootballersMarket().get(getIndex()), playerLeagueLogged, leagueId, playerLogged.getId(), MenuController.this);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);}
+                        } else {
+                            try {
+                                FantasyApplication.showMarketBuyUpdateScene(league.getFootballersMarket().get(getIndex()), playerLeagueLogged, leagueId, playerLogged.getId(), MenuController.this);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);}
+                        }
+                    }
+
                 });
             }
             @Override
@@ -194,7 +216,38 @@ public class MenuController {
                 if (empty) {
                     setGraphic(null);
                 } else {
+
+                    /*Footballer footballer = item.getFootballer();
+                    if (footballer == null) {
+                        System.err.println("Futbolista no encontrado en FootballerTableView");
+                        setGraphic(null);
+                        return;
+                    }
+                    boolean hasOffer = marketOfferService.playerHasActiveOffer(footballer, playerLogged.getId(), leagueId);
+                    System.out.println("Futbolista ID: " + footballer.getId() + ", Has active offer: " + hasOffer);
+
+                    button.setText(hasOffer ? "Actualizar oferta" : "Pujar");
+                    System.out.println("Button text set to: " + button.getText());*/
+
                     setGraphic(button);
+
+                    /*FootballerTableView currentItem = getTableView().getItems().get(getIndex());
+                    Long footballerId = currentItem.getId();
+
+                    Footballer footballer = league.getFootballersMarket().stream()
+                            .filter(f -> f.getId().equals(footballerId))
+                            .findFirst()
+                            .orElseThrow(() -> new IllegalStateException("Futbolista no encontrado"));
+
+
+
+                    boolean hasOffer = marketOfferService.playerHasActiveOffer(footballer, playerLogged.getId(), leagueId);
+                    System.out.println("Has active offer: " + hasOffer);
+
+                    button.setText(hasOffer ? "Actualizar oferta" : "Pujar");
+                    setGraphic(button);
+                    System.out.println("Button text set to: " + button.getText());*/
+
                 }
             }
 
