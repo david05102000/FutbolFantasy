@@ -3,13 +3,13 @@ package com.futbol.Fantasy.controller;
 
 import com.futbol.Fantasy.FantasyApplication;
 import com.futbol.Fantasy.model.*;
-import com.futbol.Fantasy.service.FootballerService;
 import com.futbol.Fantasy.service.LeagueService;
 import com.futbol.Fantasy.service.MarketOfferService;
 import com.futbol.Fantasy.service.PlayerLeagueService;
 import com.futbol.Fantasy.table.model.FootballerTableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
+
 
 
 @Component
@@ -70,6 +71,9 @@ public class MenuController {
     @FXML
     public Label moneyAvailable;
 
+    @FXML
+    private ChoiceBox<String> formationChoiceBox;
+
     @Autowired
     MarketOfferService marketOfferService;
 
@@ -84,14 +88,39 @@ public class MenuController {
     LeagueService leagueService;
 
     League league;
+
     private Long leagueId;
+
     private Player playerLogged;
+
+    @FXML
+    public Button goalKeeper;
+    @FXML
+    public Button defense1;
+    @FXML
+    public Button defense2;
+    @FXML
+    public Button defense3;
+    @FXML
+    public Button defense4;
+    @FXML
+    public Button mid1;
+    @FXML
+    public Button mid2;
+    @FXML
+    public Button mid3;
+    @FXML
+    public Button mid4;
+    @FXML
+    public Button striker1;
+    @FXML
+    public Button striker2;
 
     @FXML
     private void initialize() {
     }
     @Transactional
-    public void initData(Long leagueId, Player playerLogged, TableView<FootballerTableView> playerTableView,TableView<FootballerTableView> marketTableView, TableColumn<FootballerTableView, String> marketFootballerNameColumn, TableColumn<FootballerTableView, String> nameColumn, TableColumn<FootballerTableView, String> pointsColumn, TableColumn<FootballerTableView, ImageView> marketShieldColumn, TableColumn<FootballerTableView, FootballerTableView> marketActionColumn, TableView<FootballerTableView> myTeamTableView, TableColumn<FootballerTableView, ImageView> ShieldColumnTeam, TableColumn<FootballerTableView, String> marketPositionColumn,TableColumn<FootballerTableView, String> teamName, TableColumn<FootballerTableView, String> footballerNameTeam, TableColumn<FootballerTableView, String> positionTeam, Label money) {
+    public void initData(Long leagueId, Player playerLogged, TableView<FootballerTableView> playerTableView, TableView<FootballerTableView> marketTableView, TableColumn<FootballerTableView, String> marketFootballerNameColumn, TableColumn<FootballerTableView, String> nameColumn, TableColumn<FootballerTableView, String> pointsColumn, TableColumn<FootballerTableView, ImageView> marketShieldColumn, TableColumn<FootballerTableView, FootballerTableView> marketActionColumn, TableView<FootballerTableView> myTeamTableView, TableColumn<FootballerTableView, ImageView> ShieldColumnTeam, TableColumn<FootballerTableView, String> marketPositionColumn, TableColumn<FootballerTableView, String> teamName, TableColumn<FootballerTableView, String> footballerNameTeam, TableColumn<FootballerTableView, String> positionTeam, Label money, Button goalKeeper, Button defense1, Button defense2, Button defense3, Button defense4, Button mid1, Button mid2, Button mid3, Button mid4, Button striker1, Button striker2) {
         this.leagueId = leagueId;
         this.playerLogged = playerLogged;
         this.marketTableView = marketTableView;
@@ -108,6 +137,17 @@ public class MenuController {
         this.footballerNameTeam = footballerNameTeam;
         this.positionTeam = positionTeam;
         this.moneyAvailable = money;
+        this.goalKeeper = goalKeeper;
+        this.defense1 = defense1;
+        this.defense2 = defense2;
+        this.defense3 = defense3;
+        this.defense4 = defense4;
+        this.mid1 = mid1;
+        this.mid2 = mid2;
+        this.mid3 = mid3;
+        this.mid4 = mid4;
+        this.striker1 = striker1;
+        this.striker2 = striker2;
         loadPlayers();
         loadMyTeam();
         loadMarket();
@@ -134,7 +174,6 @@ public class MenuController {
         positionTeam.setCellValueFactory(new PropertyValueFactory<>("rol"));
 
 
-
         myTeamTableView.setItems(footballerTableViewList);
 
         Map<String, Integer> roleOrder = new HashMap<>();
@@ -148,6 +187,13 @@ public class MenuController {
         myTeamTableView.getSortOrder().add(positionTeam);
         positionTeam.setSortType(TableColumn.SortType.ASCENDING);
         myTeamTableView.sort();
+
+
+        assignPosition(footballers, "PORTERO", List.of(goalKeeper), 1);
+        assignPosition(footballers, "DEFENSA", List.of(defense1, defense2, defense3, defense4), 4);
+        assignPosition(footballers, "CENTROCAMPISTA", List.of(mid1, mid2, mid3, mid4), 4);
+        assignPosition(footballers, "DELANTERO", List.of(striker1, striker2), 2);
+
 
         hideHeaders(myTeamTableView);
     }
@@ -298,6 +344,27 @@ public class MenuController {
             header.setMaxHeight(0);
             header.setVisible(false);
         });
+    }
+
+    @FXML
+    public void handleClickFootballer(Event event) throws IOException {
+        Button button = (Button) event.getSource();
+        String footballer = button.getText();
+        playerLeagueLogged = playerLeagueService.findByLeagueIdAndPlayerId(playerLeagueLogged.getLeague().getId(), playerLeagueLogged.getPlayer().getId());
+        PlayerLeagueFootballer playerLeagueFootballer = playerLeagueLogged.getPlayerLeagueFootballers().stream().filter(plf -> plf.getFootballer().getName().equals(footballer)).toList().get(0);
+        FantasyApplication.showSelectFootballerMenu(playerLeagueFootballer, playerLeagueLogged, button);
+    }
+
+    private void assignPosition(List<PlayerLeagueFootballer> footballers, String role, List<Button> buttons, int number) {
+        List<String> selectedNames = footballers.stream()
+                .filter(f -> f.getSelected())
+                .filter(f -> f.getFootballer().getRol().equals(role))
+                .map(f -> f.getFootballer().getName())
+                .toList();
+
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setText(i < selectedNames.size() ? selectedNames.get(i) : "Sin asignar");
+        }
     }
 
 }

@@ -4,10 +4,12 @@ import com.futbol.Fantasy.controller.*;
 import com.futbol.Fantasy.model.Footballer;
 import com.futbol.Fantasy.model.Player;
 import com.futbol.Fantasy.model.PlayerLeague;
+import com.futbol.Fantasy.model.PlayerLeagueFootballer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -100,7 +102,7 @@ public class FantasyApplication extends Application {
 		scene = new Scene(root);
 
 		MenuController menuController = loader.getController();
-		menuController.initData(leagueId, playerLogged, menuController.playerTableView, menuController.marketTableView, menuController.marketFootballerNameColumn,menuController.nameColumn, menuController.pointsColumn, menuController.marketShieldColumn, menuController.marketActionColumn, menuController.myTeamTableView, menuController.ShieldColumnTeam, menuController.marketPositionColumn, menuController.teamName, menuController.footballerNameTeam, menuController.positionTeam, menuController.moneyAvailable);
+		menuController.initData(leagueId, playerLogged, menuController.playerTableView, menuController.marketTableView, menuController.marketFootballerNameColumn,menuController.nameColumn, menuController.pointsColumn, menuController.marketShieldColumn, menuController.marketActionColumn, menuController.myTeamTableView, menuController.ShieldColumnTeam, menuController.marketPositionColumn, menuController.teamName, menuController.footballerNameTeam, menuController.positionTeam, menuController.moneyAvailable, menuController.goalKeeper, menuController.defense1, menuController.defense2, menuController.defense3, menuController.defense4, menuController.mid1, menuController.mid2, menuController.mid3, menuController.mid4, menuController.striker1, menuController.striker2);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -185,6 +187,24 @@ public class FantasyApplication extends Application {
 
 		MarketBuyUpdateController marketBuyUpdateController = loader.getController();
 		marketBuyUpdateController.initData(footballer, playerLeague, leagueId, playerId, menuController);
+
+		newStage.show();
+	}
+
+	public static void showSelectFootballerMenu(PlayerLeagueFootballer playerLeagueFootballer, PlayerLeague playerLeague, Button button) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/selectFootballerMenu.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+		Scene newScene = new Scene(root);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		SelectFootballerMenuController selectFootballerMenuController = loader.getController();
+		selectFootballerMenuController.initData(playerLeagueFootballer, playerLeague, selectFootballerMenuController.selectFootballerListView, button);
 
 		newStage.show();
 	}
