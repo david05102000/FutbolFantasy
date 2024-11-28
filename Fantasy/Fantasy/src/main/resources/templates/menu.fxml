@@ -13,7 +13,7 @@
 
 <VBox alignment="CENTER" prefHeight="454.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.MenuController">
    <children>
-      <TabPane prefHeight="458.0" prefWidth="371.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="458.0" prefWidth="371.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="20000.0" tabMinWidth="76.0">
          <tabs>
             <Tab closable="false" text="Clasificación">
                <content>
@@ -119,6 +119,9 @@
                </content>
             </Tab>
          </tabs>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </TabPane>
    </children>
 </VBox>

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -147,6 +148,8 @@ public class MenuController {
         myTeamTableView.getSortOrder().add(positionTeam);
         positionTeam.setSortType(TableColumn.SortType.ASCENDING);
         myTeamTableView.sort();
+
+        hideHeaders(myTeamTableView);
     }
 
     private void loadPlayers() {
@@ -255,6 +258,7 @@ public class MenuController {
         marketFootballerNameColumn.getStyleClass().add("center-aligned-column");
         marketTableView.setItems(footballerTableViewList);
 
+        hideHeaders(marketTableView);
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         symbols.setGroupingSeparator('.');
@@ -283,6 +287,17 @@ public class MenuController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void hideHeaders(TableView<?> tableView) {
+        tableView.skinProperty().addListener((a, b, newSkin) ->
+        {
+            Pane header = (Pane) tableView.lookup("TableHeaderRow");
+            header.setMinHeight(0);
+            header.setPrefHeight(0);
+            header.setMaxHeight(0);
+            header.setVisible(false);
+        });
     }
 
 }
