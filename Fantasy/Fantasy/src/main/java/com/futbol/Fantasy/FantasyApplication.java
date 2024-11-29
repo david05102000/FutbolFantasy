@@ -208,4 +208,50 @@ public class FantasyApplication extends Application {
 
 		newStage.show();
 	}
+
+	public static void showGivePointsMenu() throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/givePointsMenu.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+		Scene newScene = new Scene(root);
+		newStage.setResizable(false);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		GivePointsMenuController givePointsMenuController = loader.getController();
+		givePointsMenuController.initData(givePointsMenuController.footballersTableView, givePointsMenuController.teamNameColumn, givePointsMenuController.footballerNameColumn, givePointsMenuController.actionColumn);
+
+		newStage.show();
+	}
+
+	public static void showInsertPoints(Long footballerId) throws IOException {
+		FXMLLoader loader = new FXMLLoader(FantasyApplication.class.getResource("/templates/insertPoints.fxml"));
+		loader.setControllerFactory(context::getBean);
+		Parent root = loader.load();
+
+		Stage newStage = new Stage();
+		Scene newScene = new Scene(root);
+		newStage.setScene(newScene);
+
+		newStage.initOwner(primaryStage);
+		newStage.setOnHiding(event -> event.consume());
+
+		InsertPointsController insertPointsController = loader.getController();
+		insertPointsController.initData(footballerId);
+
+		newStage.show();
+	}
+
+	@Override
+	public void stop() {
+		try {
+			context.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

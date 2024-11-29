@@ -123,6 +123,15 @@ public class AdminMenuController {
     }
 
     @FXML
+    public void handleGivePoints() throws IOException {
+        try {
+            FantasyApplication.showGivePointsMenu();
+        }catch (Exception e){
+            showError("No se han podido introducir los puntos.");
+        }
+    }
+
+    @FXML
     public void handleLogOut() throws IOException {
         FantasyApplication.showLoginScene();
     }
