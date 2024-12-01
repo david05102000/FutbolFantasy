@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="454.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.MenuController">
+<VBox alignment="CENTER" prefHeight="454.0" prefWidth="371.0" style="-fx-background-color: #24003B;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.MenuController">
    <children>
-      <TabPane prefHeight="458.0" prefWidth="371.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="20000.0" tabMinWidth="57.0">
+      <TabPane prefHeight="458.0" prefWidth="371.0" rotateGraphic="true" side="BOTTOM" style="-fx-background-color: #24003B;" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="20000.0" tabMinWidth="57.0">
          <tabs>
             <Tab closable="false" text="Clasificación">
                <content>
@@ -22,16 +22,16 @@
                      <children>
                         <Label text="Clasificación">
                            <font>
-                              <Font size="21.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
-                           <padding>
-                              <Insets bottom="10.0" />
-                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
                         </Label>
-                        <TableView fx:id="playerTableView" prefHeight="414.0" prefWidth="371.0" style="-fx-background-color: transparent;">
+                        <TableView fx:id="playerTableView" prefHeight="414.0" prefWidth="371.0" style="-fx-background-color: #4D0D6A;" stylesheets="@../css/tableview.css">
                            <columns>
                               <TableColumn fx:id="nameColumn" editable="false" prefWidth="307.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Nombre" />
                               <TableColumn fx:id="pointsColumn" editable="false" minWidth="0.0" prefWidth="63.0" resizable="false" style="-fx-alignment: CENTER;" text="Puntos" />
@@ -49,16 +49,16 @@
                      <children>
                         <Label text="Mi equipo">
                            <font>
-                              <Font size="21.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
-                           <padding>
+                           <VBox.margin>
                               <Insets bottom="10.0" top="10.0" />
-                           </padding>
+                           </VBox.margin>
                         </Label>
-                        <TableView fx:id="myTeamTableView" prefHeight="414.0" prefWidth="371.0">
+                        <TableView fx:id="myTeamTableView" prefHeight="414.0" prefWidth="371.0" style="-fx-background-color: #4D0D6A;" stylesheets="@../css/tableview.css">
                            <columns>
                               <TableColumn fx:id="ShieldColumnTeam" editable="false" prefWidth="49.0" resizable="false" sortable="false" text="C1" />
                               <TableColumn fx:id="teamName" editable="false" prefWidth="86.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C2" />
@@ -79,7 +79,7 @@
                      <children>
                         <Label text="Alineación">
                            <font>
-                              <Font size="21.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
@@ -134,9 +134,9 @@
                <content>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Mercado">
+                        <Label style="-fx-text-fill: ffffff;" text="Mercado">
                            <font>
-                              <Font size="21.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
@@ -145,7 +145,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <TableView fx:id="marketTableView" prefHeight="414.0" prefWidth="371.0">
+                        <TableView fx:id="marketTableView" prefHeight="414.0" prefWidth="371.0" style="-fx-background-color: #4D0D6A;" stylesheets="@../css/tableview.css">
                            <columns>
                               <TableColumn fx:id="marketShieldColumn" prefWidth="63.0" resizable="false" sortable="false" text="C1" />
                               <TableColumn fx:id="marketFootballerNameColumn" prefWidth="127.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C2" />
@@ -156,7 +156,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Label fx:id="moneyAvailable" alignment="CENTER" prefHeight="17.0" prefWidth="471.0" text="Dinero disponible: ">
+                        <Label fx:id="moneyAvailable" alignment="CENTER" prefHeight="17.0" prefWidth="471.0" style="-fx-text-fill: ffffff;" text="Dinero disponible: ">
                            <VBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
@@ -167,13 +167,36 @@
             </Tab>
             <Tab text="Ajustes">
                <content>
-                  <HBox alignment="CENTER" maxHeight="425.0" maxWidth="381.0" minHeight="133.0" minWidth="200.0" prefHeight="425.0" prefWidth="371.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLeagues" text="Mis ligas" />
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleInvite" text="Invitar a la liga" />
-                        <Button contentDisplay="CENTER" layoutX="200.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleSignOut" text="Cerrar sesión" />
+                        <Label text="Ajustes">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="30.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                        </Label>
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLeagues" prefHeight="36.0" prefWidth="140.0" text="Mis ligas">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="36.0" prefWidth="140.0" text="Cerrar sesión">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleInvite" prefHeight="36.0" prefWidth="140.0" text="Invitar a la liga">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
                      </children>
-                  </HBox>
+                  </VBox>
                </content>
             </Tab>
          </tabs>

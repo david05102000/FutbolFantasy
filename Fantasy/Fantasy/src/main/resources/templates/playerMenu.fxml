@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="476.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.PlayerMenuController">
+<VBox alignment="CENTER" prefHeight="476.0" prefWidth="486.0" style="-fx-background-color: #24003B;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.PlayerMenuController">
 
-   <ListView fx:id="playerLeaguesListView" onMouseClicked="#handleMouseClick" maxHeight="400.0" maxWidth="452.0" minHeight="400.0" minWidth="171.0" prefHeight="400.0" prefWidth="354.0" />
-   <HBox alignment="CENTER" prefHeight="53.0" prefWidth="248.0" spacing="20.0">
+   <ListView fx:id="playerLeaguesListView" maxHeight="400.0" maxWidth="452.0" minHeight="400.0" minWidth="171.0" onMouseClicked="#handleMouseClick" prefHeight="400.0" prefWidth="354.0" style="-fx-background-color: #4D0D6A;" />
+   <HBox alignment="CENTER" prefHeight="53.0" prefWidth="248.0" spacing="20.0" style="-fx-background-color: #24003B;">
       <children>
          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#handleCreateLeague" text="Crear Liga">
             <opaqueInsets>

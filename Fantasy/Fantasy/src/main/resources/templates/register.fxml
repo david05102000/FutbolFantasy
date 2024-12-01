@@ -7,18 +7,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.RegisterController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #24003B;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.RegisterController">
     <children>
-        <Label layoutX="124.0" layoutY="24.0" text="Registro">
+        <Label layoutX="153.0" layoutY="24.0" style="-fx-text-fill: #ffffff;" text="Registro">
             <font>
-                <Font size="18.0" />
+                <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Label layoutX="35.0" layoutY="74.0" text="Usuario:" />
-        <Label layoutX="35.0" layoutY="110.0" text="Contraseña:" />
-        <TextField fx:id="usernameField" layoutX="135.0" layoutY="70.0" prefHeight="25.0" prefWidth="150.0" />
-        <PasswordField fx:id="passwordField" layoutX="135.0" layoutY="106.0" prefHeight="25.0" prefWidth="150.0" />
-        <Button layoutX="78.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleRegister" text="Registrarse" />
-      <Button layoutX="163.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancelar" />
+        <TextField fx:id="usernameField" layoutX="65.0" layoutY="95.0" prefHeight="34.0" prefWidth="271.0" promptText="Usuario:">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+        <PasswordField fx:id="passwordField" layoutX="65.0" layoutY="141.0" prefHeight="34.0" prefWidth="271.0" promptText="Contraseña:">
+         <font>
+            <Font size="15.0" />
+         </font></PasswordField>
+        <Button layoutX="65.0" layoutY="203.0" mnemonicParsing="false" onAction="#handleRegister" text="Registrarse">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button layoutX="255.0" layoutY="203.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancelar">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
     </children>
 </AnchorPane>

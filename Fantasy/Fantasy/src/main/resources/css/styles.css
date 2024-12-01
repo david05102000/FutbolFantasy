@@ -1,0 +1,137 @@
+.button {
+    -fx-background-color: #5bc0de;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 30 30 30 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.5, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: #31b0d5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 12, 0.6, 0, 0);
+}
+
+.button:pressed {
+    -fx-background-color: #5bc0de;
+    -fx-effect: none;
+}
+.text-field {
+    -fx-background-color: #5bc0de; /* Mismo color que el botón */
+    -fx-text-fill: #ffffff; /* Texto blanco */
+    -fx-prompt-text-fill: #ffffff;
+    -fx-background-radius: 30; /* Bordes redondeados */
+    -fx-border-radius: 30; /* Bordes redondeados para el contorno */
+    -fx-padding: 5 10; /* Ajustar el espacio interno */
+    -fx-font-size: 14px; /* Tamaño del texto */
+    -fx-border-color: transparent; /* Sin borde inicialmente */
+    -fx-border-width: 2px;
+}
+
+.text-field:hover {
+    -fx-background-color: #31b0d5; /* Color más oscuro al pasar el mouse */
+}
+
+.text-field:focused {
+    -fx-border-color: #ffffff; /* Color del borde al enfocar */
+    -fx-background-color: #5bc0de; /* Asegurar que el fondo no cambie */
+}
+
+.list-view {
+    -fx-background-color: #4D0D6A;
+    -fx-control-inner-background: #4D0D6A;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-padding: 5;
+}
+
+.list-cell {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}
+
+.table-view {
+    -fx-background-color: #4D0D6A;
+    -fx-control-inner-background: #4D0D6A;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}
+
+.table-column {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}
+.table-cell {
+    -fx-background-color: transparent;
+}
+
+.label{
+     -fx-text-fill: #ffffff;
+ }
+
+
+.tab-header-background {
+    -fx-background-color: #24003B; /* Cambia por tu color */
+}
+
+/* Opcional: Cambiar el color de las pestañas activas e inactivas */
+.tab-pane .tab {
+    -fx-background-color: 360052; /* Color de las pestañas inactivas */
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #4D0D6A; /* Color de la pestaña seleccionada */
+}
+
+/* Cambiar el color del texto de las pestañas */
+.tab-pane .tab-label {
+    -fx-text-fill: #ffffff; /* Color del texto */
+}
+
+ .table-view {
+     -fx-background-color: #4D0D6A;
+     -fx-text-fill: #ffffff;
+ }
+
+ .button {
+     -fx-background-radius: 20; /* Bordes redondeados */
+     -fx-font-weight: bold;
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0); /* Sombra */
+ }
+
+ .custom-vbox {
+     -fx-background-color: #4D0D6A; /* Cambia el color de fondo */
+ }
+
+ /* Cambiar el color de fondo de la barra de desplazamiento */
+ .scroll-bar {
+     -fx-background-color: transparent; /* Fondo transparente o de tu elección */
+ }
+
+ /* Cambiar el color del "thumb" (el control deslizante que se mueve) */
+ .scroll-bar .thumb {
+     -fx-background-color: #5bc0de; /* Color principal */
+     -fx-background-radius: 5; /* Bordes redondeados */
+ }
+
+ /* Cambiar el color al pasar el mouse sobre el "thumb" */
+ .scroll-bar .thumb:hover {
+     -fx-background-color: #31b0d5; /* Color más oscuro al pasar el mouse */
+ }
+
+ /* Cambiar el color de los botones (incremento/decremento) */
+ .scroll-bar .increment-button,
+ .scroll-bar .decrement-button {
+     -fx-background-color: #5bc0de;
+ }
+
+ /* Cambiar el color de las flechas de los botones */
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow {
+     -fx-background-color: #4D0D6A; /* Color de las flechas */
+ }
+
+ /* Fondo de la pista (track) de la barra */
+ .scroll-bar .track {
+     -fx-background-color: #4D0D6A; /* Color del fondo de la pista */
+ }

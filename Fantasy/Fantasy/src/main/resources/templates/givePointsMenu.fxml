@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="428.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.GivePointsMenuController">
-   <Label text="Añadir puntos">
+<VBox alignment="CENTER" prefHeight="428.0" prefWidth="499.0" style="-fx-background-color: #24003B;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.GivePointsMenuController">
+   <Label style="-fx-text-fill: ffffff;" text="Añadir puntos">
       <font>
-         <Font size="21.0" />
+         <Font name="System Bold" size="21.0" />
       </font>
       <opaqueInsets>
          <Insets />
@@ -20,8 +20,14 @@
          <Insets bottom="10.0" top="10.0" />
       </padding>
    </Label>
-   <TextField fx:id="searchField" promptText="Buscar futbolista" />
-   <TableView fx:id="footballersTableView" prefHeight="479.0" prefWidth="563.0">
+   <TextField fx:id="searchField" prefHeight="34.0" prefWidth="494.0" promptText="Buscar futbolista">
+      <font>
+         <Font size="15.0" />
+      </font>
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" />
+      </VBox.margin></TextField>
+   <TableView fx:id="footballersTableView" prefHeight="479.0" prefWidth="563.0" stylesheets="@../css/tableview.css">
       <columns>
          <TableColumn fx:id="teamNameColumn" prefWidth="135.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Equipo" />
          <TableColumn fx:id="footballerNameColumn" prefWidth="234.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Nombre" />

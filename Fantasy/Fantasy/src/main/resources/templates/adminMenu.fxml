@@ -7,34 +7,49 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="296.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.AdminMenuController">
+<AnchorPane prefHeight="296.0" prefWidth="279.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.AdminMenuController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="24.0" prefHeight="27.0" prefWidth="324.0" text="Menú administrador" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
-        <VBox alignment="CENTER" prefHeight="296.0" prefWidth="330.0">
+        <VBox alignment="CENTER" prefHeight="300.0" prefWidth="400.0" spacing="5.0" style="-fx-background-color: #24003B;">
             <children>
-                <Button mnemonicParsing="false" onAction="#handleInsertTeamsAndFootballers" prefHeight="26.0" prefWidth="123.0" text="Insertar plantillas">
+              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="324.0" stylesheets="@../css/styles.css" text="Menú administrador" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <font>
+                      <Font name="System Bold" size="24.0" />
+                  </font>
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
+              </Label>
+                <Button mnemonicParsing="false" onAction="#handleInsertTeamsAndFootballers" prefHeight="31.0" prefWidth="157.0" text="Insertar plantillas">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
                 </Button>
                 <Button mnemonicParsing="false" onAction="#handleUpdateMarket" text="Actualizar mercado">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#handleGivePoints" text="Repartir puntos">
+                <Button mnemonicParsing="false" onAction="#handleGivePoints" prefHeight="31.0" prefWidth="157.0" text="Repartir puntos">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#handleLogOut" text="Cerrar sesión">
+                <Button mnemonicParsing="false" onMouseClicked="#handleLogOut" prefHeight="31.0" prefWidth="157.0" text="Cerrar sesión">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
                 </Button>
             </children>
         </VBox>
