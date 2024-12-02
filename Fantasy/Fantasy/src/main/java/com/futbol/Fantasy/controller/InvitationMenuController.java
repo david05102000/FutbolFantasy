@@ -27,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class InvitationMenuController {
@@ -95,20 +96,22 @@ public class InvitationMenuController {
                     if(playerLeague.getPlayer().getId().equals(playerLoggedId)) {
 
                         List<Footballer> footballerList = footballerService.findAll();
-                        List<Footballer> availableFootballerList = new ArrayList<Footballer>();
+                        List<Footballer> marketFootballers = league.getFootballersMarket();
+                        Set<Long> marketFootballerIds = marketFootballers.stream()
+                                .map(Footballer::getId)
+                                .collect(Collectors.toSet());
 
 
                         List<PlayerLeague> allPlayersInLeague = playerLeagueService.findByLeagueId(playerLeague.getLeague().getId());
+                        Set<Long> assignedFootballerIds = allPlayersInLeague.stream()
+                                .flatMap(player -> player.getPlayerLeagueFootballers().stream())
+                                .map(plf -> plf.getFootballer().getId())
+                                .collect(Collectors.toSet());
 
-                        for (Footballer footballer : footballerList) {
-                            for (PlayerLeague playerInLeague : allPlayersInLeague) {
-                                List<Footballer> footballersPlayer = playerInLeague.getPlayerLeagueFootballers().stream()
-                                        .map(PlayerLeagueFootballer::getFootballer).toList();
-                                if (!footballersPlayer.contains(footballer)) {
-                                    availableFootballerList.add(footballer);
-                                }
-                            }
-                        }
+                        List<Footballer> availableFootballerList = footballerList.stream()
+                                .filter(footballer -> !marketFootballerIds.contains(footballer.getId()))
+                                .filter(footballer -> !assignedFootballerIds.contains(footballer.getId()))
+                                .collect(Collectors.toList());
 
 
                         Map<String, List<Footballer>> classifiedFootballers = classifyFootballersByPosition(availableFootballerList);

@@ -1,6 +1,10 @@
 package com.futbol.Fantasy.model;
 
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
+
+
 
 public class PlayerLeagueId implements Serializable {
     private Long player;

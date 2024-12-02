@@ -13,24 +13,24 @@
 .table-row-cell {
     -fx-border-color: #24003B;
     -fx-border-style: solid;
-    -fx-border-width: 0 0 1px 0; /* Solo borde inferior visible */
+    -fx-border-width: 0 0 1px 0;
 
 }
 .table-row-cell:hover {
-    -fx-background-color: #5e228c; /* Un púrpura ligeramente más claro */
+    -fx-background-color: #5e228c;
 }
 
 .table-cell {
     -fx-border-color: #24003B;
-    -fx-alignment: CENTER; /* Opciones: CENTER, LEFT, RIGHT */
+    -fx-alignment: CENTER;
     -fx-border-style: solid;
 }
 
 
 .column-header-background {
-    -fx-background-color: #360052; /* Púrpura más oscuro */
+    -fx-background-color: #360052;
     -fx-text-fill: #ffffff;
     }
 .column-header{
-    -fx-border-color: #24003B; /* Bordes del encabezado */
+    -fx-border-color: #24003B;
 }

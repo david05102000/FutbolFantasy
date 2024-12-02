@@ -327,13 +327,7 @@ public class MenuController {
     public void handleInvite() throws IOException {
         FantasyApplication.showInvitePlayerScene(leagueId);
     }
-    private void showSuccess(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Éxito");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
 
     private void hideHeaders(TableView<?> tableView) {
         tableView.skinProperty().addListener((a, b, newSkin) ->

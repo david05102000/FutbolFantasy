@@ -107,6 +107,7 @@ public class MarketBuyUpdateController {
         alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
         alert.showAndWait();
     }
 
@@ -115,6 +116,7 @@ public class MarketBuyUpdateController {
         alert.setTitle("Éxito");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
         alert.showAndWait();
     }
 }

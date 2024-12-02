@@ -16,26 +16,25 @@
     -fx-effect: none;
 }
 .text-field {
-    -fx-background-color: #5bc0de; /* Mismo color que el botón */
-    -fx-text-fill: #ffffff; /* Texto blanco */
+    -fx-background-color: #5bc0de;
+    -fx-text-fill: #ffffff;
     -fx-prompt-text-fill: #ffffff;
-    -fx-background-radius: 30; /* Bordes redondeados */
-    -fx-border-radius: 30; /* Bordes redondeados para el contorno */
-    -fx-padding: 5 10; /* Ajustar el espacio interno */
-    -fx-font-size: 14px; /* Tamaño del texto */
-    -fx-border-color: transparent; /* Sin borde inicialmente */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-padding: 5 10;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
     -fx-border-width: 2px;
 }
 
 .text-field:hover {
-    -fx-background-color: #31b0d5; /* Color más oscuro al pasar el mouse */
+    -fx-background-color: #31b0d5;
 }
 
 .text-field:focused {
-    -fx-border-color: #ffffff; /* Color del borde al enfocar */
-    -fx-background-color: #5bc0de; /* Asegurar que el fondo no cambie */
+    -fx-border-color: #ffffff;
+    -fx-background-color: #5bc0de;
 }
-
 .list-view {
     -fx-background-color: #4D0D6A;
     -fx-control-inner-background: #4D0D6A;
@@ -71,21 +70,20 @@
 
 
 .tab-header-background {
-    -fx-background-color: #24003B; /* Cambia por tu color */
+    -fx-background-color: #24003B;
 }
 
-/* Opcional: Cambiar el color de las pestañas activas e inactivas */
 .tab-pane .tab {
-    -fx-background-color: 360052; /* Color de las pestañas inactivas */
+    -fx-background-color: 360052;
 }
 
 .tab-pane .tab:selected {
-    -fx-background-color: #4D0D6A; /* Color de la pestaña seleccionada */
+    -fx-background-color: #4D0D6A;
 }
 
-/* Cambiar el color del texto de las pestañas */
+
 .tab-pane .tab-label {
-    -fx-text-fill: #ffffff; /* Color del texto */
+    -fx-text-fill: #ffffff;
 }
 
  .table-view {
@@ -94,44 +92,67 @@
  }
 
  .button {
-     -fx-background-radius: 20; /* Bordes redondeados */
+     -fx-background-radius: 20;
      -fx-font-weight: bold;
-     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0); /* Sombra */
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
  }
 
  .custom-vbox {
-     -fx-background-color: #4D0D6A; /* Cambia el color de fondo */
+     -fx-background-color: #4D0D6A;
  }
 
- /* Cambiar el color de fondo de la barra de desplazamiento */
+
  .scroll-bar {
-     -fx-background-color: transparent; /* Fondo transparente o de tu elección */
+     -fx-background-color: transparent;
  }
 
- /* Cambiar el color del "thumb" (el control deslizante que se mueve) */
+
  .scroll-bar .thumb {
-     -fx-background-color: #5bc0de; /* Color principal */
-     -fx-background-radius: 5; /* Bordes redondeados */
+     -fx-background-color: #5bc0de;
+     -fx-background-radius: 5;
  }
 
- /* Cambiar el color al pasar el mouse sobre el "thumb" */
+
  .scroll-bar .thumb:hover {
-     -fx-background-color: #31b0d5; /* Color más oscuro al pasar el mouse */
+     -fx-background-color: #31b0d5;
  }
 
- /* Cambiar el color de los botones (incremento/decremento) */
+
  .scroll-bar .increment-button,
  .scroll-bar .decrement-button {
      -fx-background-color: #5bc0de;
  }
 
- /* Cambiar el color de las flechas de los botones */
+
  .scroll-bar .increment-arrow,
  .scroll-bar .decrement-arrow {
-     -fx-background-color: #4D0D6A; /* Color de las flechas */
+     -fx-background-color: #4D0D6A;
  }
 
- /* Fondo de la pista (track) de la barra */
  .scroll-bar .track {
-     -fx-background-color: #4D0D6A; /* Color del fondo de la pista */
+     -fx-background-color: #4D0D6A;
+ }
+
+.Tab[text="Ajustes"] .button {
+     -fx-background-color: #5bc0de;
+     -fx-text-fill: #ffffff;
+     -fx-background-radius: 30 30 30 30;
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.5, 0, 0);
+     -fx-transition: all 0.3s ease;
+    -fx-pref-width: 140.0 !important;
+    -fx-pref-height: 36.0 !important;
+ }
+
+.Tab[text="Ajustes"] .button:hover {
+     -fx-background-color: #31b0d5;
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 12, 0.6, 0, 0);
+    -fx-pref-width: 140.0 !important;
+    -fx-pref-height: 36.0 !important;
+ }
+
+.Tab[text="Ajustes"] .button:pressed {
+     -fx-background-color: #5bc0de;
+     -fx-effect: none;
+    -fx-pref-width: 140.0 !important;
+    -fx-pref-height: 36.0 !important;
  }

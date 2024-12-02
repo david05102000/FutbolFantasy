@@ -1,0 +1,46 @@
+.button {
+    -fx-background-color: #5bc0de;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 30 30 30 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.5, 0, 0);
+    -fx-transition: all 0.3s ease;
+    -fx-pref-width: 157.0 !important;
+    -fx-pref-height: 31.0 !important;
+}
+
+.button:hover {
+    -fx-background-color: #31b0d5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 12, 0.6, 0, 0);
+    -fx-pref-width: 157.0 !important;
+    -fx-pref-height: 31.0 !important;
+}
+
+.button:pressed {
+    -fx-background-color: #5bc0de;
+    -fx-effect: none;
+    -fx-pref-width: 157.0 !important;
+    -fx-pref-height: 31.0 !important;
+}
+.Tab[text="Ajustes"] .button {
+    -fx-background-color: #5bc0de;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 30 30 30 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.5, 0, 0);
+    -fx-transition: all 0.3s ease;
+    -fx-pref-width: 140.0 !important;
+    -fx-pref-height: 36.0 !important;
+}
+
+.Tab[text="Ajustes"] .button:hover {
+    -fx-background-color: #31b0d5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 12, 0.6, 0, 0);
+    -fx-pref-width: 140.0 !important;
+    -fx-pref-height: 36.0 !important;
+}
+
+.Tab[text="Ajustes"] .button:pressed {
+    -fx-background-color: #5bc0de;
+    -fx-effect: none;
+    -fx-pref-width: 140.0 !important;
+    -fx-pref-height: 36.0 !important;
+}

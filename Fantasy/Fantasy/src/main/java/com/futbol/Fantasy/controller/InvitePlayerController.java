@@ -68,6 +68,7 @@ public class InvitePlayerController {
         alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
         alert.showAndWait();
     }
 
@@ -76,6 +77,7 @@ public class InvitePlayerController {
         alert.setTitle("Éxito");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
         alert.showAndWait();
     }
 }
