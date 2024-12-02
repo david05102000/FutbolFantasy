@@ -13,7 +13,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameField" layoutX="111.0" layoutY="133.0" prefHeight="26.0" prefWidth="178.0" promptText="Usuario:">
+      <TextField fx:id="usernameField" layoutX="111.0" layoutY="133.0" prefHeight="26.0" prefWidth="178.0" promptText="Usuario">
          <font>
             <Font size="15.0" />
          </font></TextField>

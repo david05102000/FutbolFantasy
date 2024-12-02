@@ -26,7 +26,7 @@ public class WebScraper {
     }
 
     public void getTeamsAndFootballersAndSave() {
-        System.setProperty("webdriver.edge.driver", "C:/Users/domin/OneDrive/Escritorio/Fantasy/Fantasy/Football/src/main/resources/edgedriver_win64/msedgedriver.exe");
+        System.setProperty("webdriver.edge.driver", "C:/Users/domin/OneDrive/Escritorio/FutbolFantasy/FutbolFantasy/Fantasy/Fantasy/src/main/resources/edgedriver_win64/msedgedriver.exe");
 
         EdgeOptions options = new EdgeOptions();
         WebDriver driver = new EdgeDriver(options);
