@@ -48,7 +48,7 @@ public class WebScraper {
                     WebElement equipo = equipos.get(i);
 
                     String nombre = equipo.findElement(By.cssSelector("h2")).getText();
-                    String urlTeam = equipo.findElement(By.cssSelector("a")).getAttribute("href");
+                    String urlTeam = equipo.findElement(By.cssSelector("a")).getAttribute("href") + "/plantilla";
 
                     driver.get(urlTeam);
                     Thread.sleep(2000);
