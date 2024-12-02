@@ -33,8 +33,8 @@
                         </Label>
                         <TableView fx:id="playerTableView" prefHeight="414.0" prefWidth="371.0" style="-fx-background-color: #4D0D6A;" stylesheets="@../css/tableview.css">
                            <columns>
-                              <TableColumn fx:id="nameColumn" editable="false" prefWidth="307.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Nombre" />
-                              <TableColumn fx:id="pointsColumn" editable="false" minWidth="0.0" prefWidth="63.0" resizable="false" style="-fx-alignment: CENTER;" text="Puntos" />
+                              <TableColumn fx:id="nameColumn" editable="false" prefWidth="286.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Nombre" />
+                              <TableColumn fx:id="pointsColumn" editable="false" minWidth="0.0" prefWidth="84.0" resizable="false" style="-fx-alignment: CENTER;" text="Puntos" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -60,10 +60,10 @@
                         </Label>
                         <TableView fx:id="myTeamTableView" prefHeight="414.0" prefWidth="371.0" style="-fx-background-color: #4D0D6A;" stylesheets="@../css/tableview.css">
                            <columns>
-                              <TableColumn fx:id="ShieldColumnTeam" editable="false" prefWidth="49.0" resizable="false" sortable="false" text="C1" />
-                              <TableColumn fx:id="teamName" editable="false" prefWidth="86.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C2" />
-                              <TableColumn fx:id="footballerNameTeam" editable="false" prefWidth="120.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C3" />
-                              <TableColumn fx:id="positionTeam" editable="false" prefWidth="114.0" style="-fx-alignment: CENTER;" text="C4" />
+                              <TableColumn fx:id="ShieldColumnTeam" editable="false" prefWidth="51.0" resizable="false" sortable="false" text="C1" />
+                              <TableColumn fx:id="teamName" editable="false" prefWidth="88.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C2" />
+                              <TableColumn fx:id="footballerNameTeam" editable="false" prefWidth="102.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C3" />
+                              <TableColumn fx:id="positionTeam" editable="false" prefWidth="128.0" style="-fx-alignment: CENTER;" text="C4" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -150,7 +150,7 @@
                               <TableColumn fx:id="marketShieldColumn" prefWidth="63.0" resizable="false" sortable="false" text="C1" />
                               <TableColumn fx:id="marketFootballerNameColumn" prefWidth="127.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C2" />
                               <TableColumn fx:id="marketPositionColumn" prefWidth="97.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C3" />
-                              <TableColumn fx:id="marketActionColumn" prefWidth="83.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-LEFT;" text="C4" />
+                              <TableColumn fx:id="marketActionColumn" prefWidth="83.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="C4" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -167,7 +167,7 @@
             </Tab>
             <Tab text="Ajustes">
                <content>
-                  <VBox alignment="CENTER" stylesheets="@../css/styles2.css" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" stylesheets="@../css/styles2.css">
                      <children>
                         <Label text="Ajustes">
                            <font>
@@ -187,7 +187,7 @@
                         </Button>
                         <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="36.0" prefWidth="140.0" text="Cerrar sesión">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Button>
                         <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleInvite" prefHeight="36.0" prefWidth="140.0" text="Invitar a la liga">

@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futbol.Fantasy.controller.LoginController">
    <right>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #4D0D6A;" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="105.0" fitWidth="116.0" layoutX="94.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="105.0" fitWidth="116.0" layoutX="94.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pngegg.png" />
+                  <Image url="@../images/pngegg (1).png" />
                </image>
             </ImageView>
             <Button layoutX="96.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="100.0" text="Iniciar Sesión" />
@@ -27,11 +29,16 @@
    <left>
       <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #24003B;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="139.0" fitWidth="223.0" layoutX="5.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="195.0" fitWidth="218.0" layoutX="5.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/png-transparent-2014-fifa-world-cup-football-pitch-formation-defender-football-field-football-field-illustration-game-sport-grass.png" />
+                  <Image url="@../images/pngegg (2).png" />
                </image>
             </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="36.0" prefHeight="70.0" prefWidth="174.0" style="-fx-text-fill: #5bc0de;" text="Fantasy" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </left>

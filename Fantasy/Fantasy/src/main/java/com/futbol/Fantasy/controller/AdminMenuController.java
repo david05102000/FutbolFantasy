@@ -11,6 +11,7 @@ import com.futbol.Fantasy.utils.WebScraper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -42,6 +43,7 @@ public class AdminMenuController {
             showError("Ha ocurrido un error durante las inserción de las plantillas");
         }
     }
+
 
     @FXML
     public void handleUpdateMarket() throws IOException {
